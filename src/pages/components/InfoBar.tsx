@@ -10,7 +10,7 @@ interface IInfoBar {
 
 const InfoBar = ({ title, color, setPageSelected, hidden, page }: IInfoBar) => {
   return (
-    <div className="flex flex-row ">
+    <div className="flex w-full flex-row">
       <button
         className="flex h-screen w-20 items-center justify-center border border-black"
         style={{ backgroundColor: `${color}` }}
@@ -19,7 +19,7 @@ const InfoBar = ({ title, color, setPageSelected, hidden, page }: IInfoBar) => {
       >
         <p className="-rotate-90 text-5xl font-bold">{title}</p>
       </button>
-      {hidden ? <div className="flex flex-col">{page}</div> : null}
+      {hidden ? page : null}
     </div>
   );
 };

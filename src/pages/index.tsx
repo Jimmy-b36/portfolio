@@ -17,10 +17,10 @@ const Home: NextPage = () => {
   const [pageSelected, setPageSelected] = useState("Home");
   // if the page selected is not home or that page itself transform button to other side of page
   return (
-    <div className="flex flex-row bg-slate-900">
+    <div className="flex bg-slate-900 lg:flex-row">
       {TITLES.map((item, index) => (
         <div
-          className="flex flex-row duration-500 ease-in-out"
+          className="flex duration-500 ease-in-out lg:flex-row"
           style={
             pageSelected === item.title ? { flexGrow: 1 } : { flexGrow: 0 }
           }
