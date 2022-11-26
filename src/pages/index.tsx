@@ -33,6 +33,7 @@ const Home: NextPage = () => {
             page={item.page}
             hidden={pageSelected === item.title}
           />
+{pageSelected === item.title && item.page}
         </div>
       ))}
     </div>
