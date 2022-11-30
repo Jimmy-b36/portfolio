@@ -31,9 +31,8 @@ const Home: NextPage = () => {
             color={item.color}
             setPageSelected={setPageSelected}
             page={item.page}
-            hidden={pageSelected === item.title}
+            isHidden={pageSelected === item.title}
           />
-{pageSelected === item.title && item.page}
         </div>
       ))}
     </div>

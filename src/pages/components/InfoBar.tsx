@@ -1,27 +1,31 @@
-import { SetStateAction, Dispatch } from "react";
+import { SetStateAction, Dispatch, useEffect, useState } from "react";
 
 interface IInfoBar {
   title: string;
   color: string;
   setPageSelected: Dispatch<SetStateAction<string>>;
-  hidden: boolean;
+  isHidden: boolean;
   page?: JSX.Element;
 }
 
-const InfoBar = ({ title, color, setPageSelected, hidden, page }: IInfoBar) => {
+const InfoBar = ({
+  title,
+  color,
+  setPageSelected,
+  isHidden,
+  page,
+}: IInfoBar) => {
   return (
-    <div className="flex w-full flex-row">
+    <div className="flex flex-row min-w-full">
       <button
-        className="flex h-screen w-20 items-center justify-center border border-black"
+        className="flex items-center justify-center w-20 h-screen border border-black"
         style={{ backgroundColor: `${color}` }}
-        onClick={(e) => setPageSelected(title)}
+        onClick={() => setPageSelected(title)}
         value={title}
       >
-        <p className="-rotate-90 text-5xl font-bold">{title}</p>
+        <p className="text-5xl font-bold -rotate-90">{title}</p>
       </button>
-      <div className="flex w-full flex-col items-center justify-center">
-        {hidden ? page : null}
-      </div>
+      {isHidden && page}
     </div>
   );
 };
