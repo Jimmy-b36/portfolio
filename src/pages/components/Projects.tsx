@@ -1,5 +1,6 @@
 import useSWR from "swr";
 import Image from "next/image";
+
 const TOKEN =
   "349d940b9ac04f382bf4c5111f8ee73b9cec4187aa965e3c3f2953f54015b9bd605555ae241b51e2209b49d9a8618d34fe086616a3eb52df02a4fc23387e502246d276db1aea81872ed1098b89c44c0b10f56ab964ca3eafb3b9b49e3605c830c57dd21609e258b02c44ab47fd50070adbf3d6889997d8899f47f9d792e5af9b";
 
@@ -26,13 +27,15 @@ const Projects = () => {
 
   if (error) return <div>failed to load</div>;
   return (
-    <div className="flex w-1/2 flex-wrap items-center justify-center">
+    <div className="h-screen overflow-auto">
       {data &&
         data.data.map((item: IProjects) => (
           <a
             key={item.id}
-            className="flex h-auto flex-col items-center justify-center rounded-lg bg-slate-500 drop-shadow-[5px_5px_16px_5px_rgba(129,129,129,1)] lg:w-fit"
-            style={{ boxShadow: "0px 11px 18px 5px #505050" }}
+            className="m-10 flex h-auto flex-col items-center justify-center rounded-lg bg-slate-500 drop-shadow-[5px_5px_16px_5px_rgba(129,129,129,1)]"
+            style={{
+              boxShadow: "31px 31px 63px #060911, -31px -31px 63px #182543",
+            }}
             href={item.attributes.URL}
             target="_blank"
             rel="noreferrer"

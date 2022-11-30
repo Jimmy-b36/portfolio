@@ -1,4 +1,4 @@
-import { SetStateAction, Dispatch, useEffect } from "react";
+import { SetStateAction, Dispatch } from "react";
 
 interface IInfoBar {
   title: string;
@@ -19,7 +19,9 @@ const InfoBar = ({ title, color, setPageSelected, hidden, page }: IInfoBar) => {
       >
         <p className="-rotate-90 text-5xl font-bold">{title}</p>
       </button>
-      {hidden ? page : null}
+      <div className="flex w-full flex-col items-center justify-center">
+        {hidden ? page : null}
+      </div>
     </div>
   );
 };

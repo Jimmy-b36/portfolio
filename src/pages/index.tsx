@@ -20,7 +20,7 @@ const Home: NextPage = () => {
     <div className="flex bg-slate-900 lg:flex-row">
       {TITLES.map((item, index) => (
         <div
-          className="flex duration-500 ease-in-out lg:flex-row"
+          className="flex duration-1000 ease-in-out lg:flex-row"
           style={
             pageSelected === item.title ? { flexGrow: 1 } : { flexGrow: 0 }
           }
