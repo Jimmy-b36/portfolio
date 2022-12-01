@@ -16,14 +16,14 @@ const InfoBar = ({
   page,
 }: IInfoBar) => {
   return (
-    <div className="flex flex-row min-w-full">
+    <div className="flex min-w-full flex-row">
       <button
-        className="flex items-center justify-center w-20 h-screen border border-black"
+        className="flex h-screen w-20 items-center justify-center border border-black"
         style={{ backgroundColor: `${color}` }}
         onClick={() => setPageSelected(title)}
         value={title}
       >
-        <p className="text-5xl font-bold -rotate-90">{title}</p>
+        <p className="-rotate-90 text-5xl font-bold">{title}</p>
       </button>
       {isHidden && page}
     </div>
