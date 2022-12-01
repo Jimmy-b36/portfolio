@@ -30,7 +30,7 @@ const Projects = () => {
   useEffect(() => {
     const x = setTimeout(() => {
       setIsExpanded(true);
-    }, 800);
+    }, 850);
     return () => clearTimeout(x);
   }, []);
 
