@@ -1,4 +1,4 @@
-import { SetStateAction, Dispatch, useEffect, useState } from "react";
+import { SetStateAction, Dispatch } from "react";
 
 interface IInfoBar {
   title: string;
@@ -16,16 +16,15 @@ const InfoBar = ({
   page,
 }: IInfoBar) => {
   return (
-    <div className="flex min-w-full flex-row">
+    <div className="flex flex-row min-w-full">
       <button
-        className="flex h-screen w-20 items-center justify-center border border-black"
+        className="flex items-center justify-center w-20 h-screen border border-black"
         style={{ backgroundColor: `${color}` }}
         onClick={() => setPageSelected(title)}
         value={title}
       >
-        <p className="-rotate-90 text-5xl font-bold">{title}</p>
+        <p className="text-5xl font-bold -rotate-90">{title}</p>
       </button>
-      {isHidden && page}
     </div>
   );
 };

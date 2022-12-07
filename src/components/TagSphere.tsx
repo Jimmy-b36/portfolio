@@ -237,7 +237,7 @@ const TagSphere = (props: any) => {
     setItems((items: any) => {
       if (lessSpeed == 0) return items;
 
-      let a, b;
+      let a: number, b: number;
       if (!keepRollingAfterMouseOut && !active && !firstRender) {
         setLessSpeed((lessSpeedCurrent) => {
           const lessConstant = lessSpeed * (maxSpeed / 200);
