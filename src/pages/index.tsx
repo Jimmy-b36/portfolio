@@ -1,6 +1,6 @@
 import { type NextPage } from "next";
 import InfoBar from "../components/InfoBar";
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 import Skills from "../components/Skills";
 import About from "../components/About";
 import Projects from "../components/Projects";
