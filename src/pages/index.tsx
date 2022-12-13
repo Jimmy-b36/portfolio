@@ -12,43 +12,15 @@ interface ITitles {
   page: JSX.Element;
 }
 
-const timeout = (time: number) => {
-  return new Promise((resolve) => setTimeout(resolve, time));
-};
+const TITLES: ITitles[] = [
+  { title: "About", color: "#2A9D8F", page: <About /> },
+  { title: "Projects", color: "#E9C46A", page: <Projects /> },
+  { title: "Skills", color: "#E76F51", page: <Skills /> },
+  { title: "Contact", color: "#F4A261", page: <Contact /> },
+];
 
 const Home: NextPage = () => {
-  const [isExpanded, setIsExpanded] = useState<string>("hidden");
-
   const [pageSelected, setPageSelected] = useState("Home");
-
-  // when I expand the div set off a function that waits 1 sec then changes the view to block
-  const changeVisibility = () => {
-    timeout(1000);
-    return "block";
-  };
-
-  const TITLES: ITitles[] = [
-    {
-      title: "About",
-      color: "#2A9D8F",
-      page: <About />,
-    },
-    {
-      title: "Projects",
-      color: "#E9C46A",
-      page: <Projects />,
-    },
-    {
-      title: "Skills",
-      color: "#E76F51",
-      page: <Skills />,
-    },
-    {
-      title: "Contact",
-      color: "#F4A261",
-      page: <Contact />,
-    },
-  ];
 
   // if the page selected is not home or that page itself transform button to other side of page
   return (
@@ -70,11 +42,7 @@ const Home: NextPage = () => {
               pageSelected === item.title ? { flexGrow: 1 } : { flexGrow: 0 }
             }
           >
-            <div
-              className={`${
-                pageSelected === item.title ? changeVisibility() : "hidden"
-              } transition duration-500 `}
-            >
+            <div className="flex justify-center">
               {pageSelected === item.title && item.page}
             </div>
           </div>
