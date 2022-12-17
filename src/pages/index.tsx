@@ -32,8 +32,6 @@ const Home: NextPage = () => {
               title={item.title}
               color={item.color}
               setPageSelected={setPageSelected}
-              page={item.page}
-              isHidden={pageSelected === item.title}
             />
           </div>
           <div
@@ -42,7 +40,7 @@ const Home: NextPage = () => {
               pageSelected === item.title ? { flexGrow: 1 } : { flexGrow: 0 }
             }
           >
-            <div className="flex justify-center">
+            <div className="flex w-full justify-center">
               {pageSelected === item.title && item.page}
             </div>
           </div>
