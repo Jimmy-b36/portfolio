@@ -140,7 +140,7 @@ const createItem = (
 let defaultState: tagSphereProps = {
   texts: [],
   maxSpeed: 7,
-  initialSpeed: 32,
+  initialSpeed: 20,
   initialDirection: 135,
   keepRollingAfterMouseOut: true,
   useContainerInlineStyles: true,
