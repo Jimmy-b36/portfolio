@@ -159,8 +159,9 @@ let defaultState: tagSphereProps = {
     ...defaultState,
     texts: data.data.map((item: any) => (
       <img
-        height={20}
-        width={75}
+        className="tag-sphere-image"
+        height={17}
+        width={50}
         src={`http://localhost:1337${item.attributes.image.data.attributes.url}`}
         alt={"Random image"}
       />
@@ -180,17 +181,37 @@ const TagSphere = (props: any) => {
     style,
     useContainerInlineStyles,
   }: tagSphereProps = { ...defaultState, ...props };
+  const [width, setWidth] = useState(window.innerWidth);
+  const [size, setSize] = useState(
+    width > 1440 ? 2 * (texts.length * 10) : 1.5 * (texts.length * 10)
+  );
+  const [depth, setDepth] = useState(1.5 * (texts.length * 10));
 
   let radius = props.radius;
 
   if (!radius) {
-    radius = texts.length * 15;
+    radius = texts.length * (width > 1440 ? 15 : 10);
   }
 
-  const depth = 2 * radius;
-  const size = 1.5 * radius;
+  useEffect(() => {
+    const tagSphereItems = document.getElementsByClassName("tag-sphere-image");
+    for (let item of tagSphereItems) {
+      width < 1440
+        ? (item.setAttribute("height", "15"), item.setAttribute("width", "50"))
+        : (item.setAttribute("height", "20"), item.setAttribute("width", "75"));
+    }
+    setSize(1.5 * radius);
+  }, [width]);
+
   const itemHooks = texts.map(() => createRef());
   const [items, setItems]: [any[], any] = useState([]);
+
+  useEffect(() => {
+    const handleResize = () => setWidth(window.innerWidth);
+    window.addEventListener("resize", handleResize);
+
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   useEffect(() => {
     setItems(() =>
@@ -198,7 +219,7 @@ const TagSphere = (props: any) => {
         createItem(text, index, texts.length, size, itemHooks[index])
       )
     );
-  }, [texts]);
+  }, [texts, size]);
 
   const containerRef = useRef(null);
   const [firstRender, setFirstRender] = useState(true);

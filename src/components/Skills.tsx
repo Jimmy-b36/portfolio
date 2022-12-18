@@ -33,11 +33,13 @@ const SKILLS = [
 const Skills = () => {
   const [isExpanded, setIsExpanded] = useState<boolean>(false);
   const [isListView, setIsListView] = useState<boolean>(false);
+
   useEffect(() => {
     setTimeout(() => {
       setIsExpanded(true);
     }, 850);
   }, []);
+
   return (
     <div className="flex w-full flex-col items-center justify-center">
       {isExpanded && (
