@@ -149,21 +149,24 @@ let defaultState: tagSphereProps = {
 };
 
 (async () => {
-  const data = await fetch(`http://localhost:1337/api/skills?populate=*`, {
-    headers: {
-      Authorization: "Bearer " + process.env.NEXT_PUBLIC_STRAPI_TOKEN,
-    },
-  }).then((res) => res.json());
+  const tagSphereData = await fetch(
+    `http://localhost:1337/api/skills?populate=*`,
+    {
+      headers: {
+        Authorization: "Bearer " + process.env.NEXT_PUBLIC_STRAPI_TOKEN,
+      },
+    }
+  ).then((res) => res.json());
 
   defaultState = {
     ...defaultState,
-    texts: data.data.map((item: any) => (
+    texts: tagSphereData.data.map((item: any) => (
       <img
         className="tag-sphere-image"
-        height={17}
-        width={50}
-        src={`http://localhost:1337${item.attributes.image.data.attributes.url}`}
-        alt={"Random image"}
+        height={window.innerWidth > 1440 ? 20 : 15}
+        width={window.innerWidth > 1440 ? 75 : 50}
+        src={`${process.env.NEXT_PUBLIC_STRAPI_URL}${item.attributes.image.data.attributes.url}`}
+        alt={item.attributes.alt}
       />
     )),
   };
@@ -181,27 +184,27 @@ const TagSphere = (props: any) => {
     style,
     useContainerInlineStyles,
   }: tagSphereProps = { ...defaultState, ...props };
-  const [width, setWidth] = useState(window.innerWidth);
+  const [screenWidth, setWidth] = useState(window.innerWidth);
   const [size, setSize] = useState(
-    width > 1440 ? 2 * (texts.length * 10) : 1.5 * (texts.length * 10)
+    screenWidth > 1440 ? 2 * (texts.length * 10) : 1.5 * (texts.length * 10)
   );
-  const [depth, setDepth] = useState(1.5 * (texts.length * 10));
+  const depth = 1.5 * (texts.length * 10);
 
   let radius = props.radius;
 
   if (!radius) {
-    radius = texts.length * (width > 1440 ? 15 : 10);
+    radius = texts.length * (screenWidth > 1440 ? 15 : 10);
   }
 
   useEffect(() => {
     const tagSphereItems = document.getElementsByClassName("tag-sphere-image");
     for (let item of tagSphereItems) {
-      width < 1440
+      screenWidth < 1440
         ? (item.setAttribute("height", "15"), item.setAttribute("width", "50"))
         : (item.setAttribute("height", "20"), item.setAttribute("width", "75"));
     }
     setSize(1.5 * radius);
-  }, [width]);
+  }, [screenWidth]);
 
   const itemHooks = texts.map(() => createRef());
   const [items, setItems]: [any[], any] = useState([]);
@@ -209,6 +212,7 @@ const TagSphere = (props: any) => {
   useEffect(() => {
     const handleResize = () => setWidth(window.innerWidth);
     window.addEventListener("resize", handleResize);
+    console.log("items", "items");
 
     return () => window.removeEventListener("resize", handleResize);
   }, []);

@@ -1,6 +1,6 @@
 import { MutableRefObject, useEffect, useRef, useState } from "react";
 import { Fade } from "react-reveal";
-import emailjs from "@emailjs/browser";
+import emailjs, { EmailJSResponseStatus } from "@emailjs/browser";
 
 const Contact = () => {
   const [isExpanded, setIsExpanded] = useState<boolean>(false);
@@ -15,10 +15,10 @@ const Contact = () => {
         contactForm.current ?? "no form",
         process.env.NEXT_PUBLIC_PUBLIC_KEY ?? "no public key"
       )
-      .then((res) => {
+      .then((res: EmailJSResponseStatus) => {
         console.log("SUCCESS!", res.status, res.text);
       })
-      .catch((err) => console.log("FAILED!", err.message));
+      .catch((err: EmailJSResponseStatus) => console.log("FAILED!", err));
     return contactForm.current?.reset();
   };
 

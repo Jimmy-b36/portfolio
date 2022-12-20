@@ -57,7 +57,7 @@ const Skills = () => {
 
           {isListView ? (
             <div className="mt-5 flex h-96 w-full justify-center">
-              <ul className="flex h-1/2 w-3/4 flex-col flex-wrap rounded-lg bg-gradient-to-br from-white to-slate-500 p-5 text-center will-change-contents">
+              <ul className="flex h-3/4 w-3/4 flex-col flex-wrap rounded-lg bg-gradient-to-br from-white to-slate-500 p-5 text-center will-change-contents">
                 {SKILLS.map((skill: string, index: number) => (
                   <li key={index} className="mr-2 text-2xl">
                     {skill}

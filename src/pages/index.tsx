@@ -24,7 +24,7 @@ const Home: NextPage = () => {
 
   // if the page selected is not home or that page itself transform button to other side of page
   return (
-    <div className="flex bg-slate-900 lg:flex-row">
+    <div className="flex min-h-screen flex-col bg-slate-900  lg:flex-row xl:flex-row">
       {TITLES.map((item, index) => (
         <>
           <div key={index}>
