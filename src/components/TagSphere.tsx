@@ -163,8 +163,12 @@ let defaultState: tagSphereProps = {
     texts: tagSphereData.data.map((item: any) => (
       <img
         className="tag-sphere-image"
-        height={window.innerWidth > 1440 ? 20 : 15}
-        width={window.innerWidth > 1440 ? 75 : 50}
+        height={
+          window.innerWidth > 1440 ? 20 : window.innerWidth > 1020 ? 15 : 12
+        }
+        width={
+          window.innerWidth > 1440 ? 75 : window.innerWidth > 1020 ? 50 : 40
+        }
         src={`${process.env.NEXT_PUBLIC_STRAPI_URL}${item.attributes.image.data.attributes.url}`}
         alt={item.attributes.alt}
       />
@@ -185,25 +189,61 @@ const TagSphere = (props: any) => {
     useContainerInlineStyles,
   }: tagSphereProps = { ...defaultState, ...props };
   const [screenWidth, setWidth] = useState(window.innerWidth);
+
+  const TEXT_LENGTH_STANDARD = texts.length * 10;
+  const sphereSize = {
+    small: {
+      radius: 7,
+      size: 1.25 * TEXT_LENGTH_STANDARD,
+    },
+    medium: {
+      radius: 10,
+      size: 1.5 * TEXT_LENGTH_STANDARD,
+    },
+    large: {
+      radius: 15,
+      size: 2 * TEXT_LENGTH_STANDARD,
+    },
+  };
+
   const [size, setSize] = useState(
-    screenWidth > 1440 ? 2 * (texts.length * 10) : 1.5 * (texts.length * 10)
+    screenWidth > 1440
+      ? sphereSize.large.size
+      : screenWidth > 1020
+      ? sphereSize.medium.size
+      : sphereSize.small.size
   );
-  const depth = 1.5 * (texts.length * 10);
+  const depth = 1.5 * TEXT_LENGTH_STANDARD;
 
   let radius = props.radius;
 
   if (!radius) {
-    radius = texts.length * (screenWidth > 1440 ? 15 : 10);
+    radius =
+      texts.length *
+      (screenWidth > 1440
+        ? sphereSize.large.radius
+        : screenWidth > 1020
+        ? sphereSize.medium.radius
+        : sphereSize.small.radius);
   }
 
   useEffect(() => {
     const tagSphereItems = document.getElementsByClassName("tag-sphere-image");
     for (let item of tagSphereItems) {
-      screenWidth < 1440
+      screenWidth > 1440
+        ? (item.setAttribute("height", "20"), item.setAttribute("width", "75"))
+        : screenWidth > 1020
         ? (item.setAttribute("height", "15"), item.setAttribute("width", "50"))
-        : (item.setAttribute("height", "20"), item.setAttribute("width", "75"));
+        : (item.setAttribute("height", "12"), item.setAttribute("width", "40"));
     }
-    setSize(1.5 * radius);
+
+    setSize(
+      screenWidth > 1440
+        ? sphereSize.large.size
+        : screenWidth > 1020
+        ? sphereSize.medium.size
+        : sphereSize.small.size
+    );
   }, [screenWidth]);
 
   const itemHooks = texts.map(() => createRef());
@@ -212,7 +252,6 @@ const TagSphere = (props: any) => {
   useEffect(() => {
     const handleResize = () => setWidth(window.innerWidth);
     window.addEventListener("resize", handleResize);
-    console.log("items", "items");
 
     return () => window.removeEventListener("resize", handleResize);
   }, []);
