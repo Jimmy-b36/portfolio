@@ -7,7 +7,7 @@
   align-items: center;
   margin-top: 2em;
 }
-@media screen and (max-width: 1320px) {
+@media screen and (max-width: 1440px) {
   .flip {
     width: 370px;
     height: 200px;
