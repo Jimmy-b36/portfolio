@@ -44,22 +44,25 @@ const Skills = () => {
     <div className="flex w-full flex-col items-center justify-center">
       {isExpanded && (
         <Fade left>
-          <h1 className="mt-10 w-full bg-gradient-to-r from-blue-200 to-pink-600 bg-clip-text text-center text-6xl font-extrabold text-transparent">
+          <h1 className="mt-10 hidden w-full bg-gradient-to-r from-blue-200 to-pink-600 bg-clip-text text-center text-6xl font-extrabold text-transparent lg:block xl:block xxl:block">
             Skills
           </h1>
 
           <button
             onClick={() => setIsListView(isListView ? false : true)}
-            className="my-5 self-center rounded-lg bg-gray-200 p-4"
+            className="my-5 w-24 self-center rounded-lg bg-gray-200 p-4"
           >
-            {isListView ? "Sphere view" : "List View"}
+            {isListView ? "Sphere" : "List"}
           </button>
 
           {isListView ? (
             <div className="mt-5 flex h-96 w-full justify-center">
               <ul className="flex h-3/4 w-3/4 flex-col flex-wrap rounded-lg bg-gradient-to-br from-white to-slate-500 p-5 text-center will-change-contents">
                 {SKILLS.map((skill: string, index: number) => (
-                  <li key={index} className="mr-2 text-2xl">
+                  <li
+                    key={index}
+                    className="mr-2 text-center text-sm lg:text-2xl xl:text-2xl xxl:text-2xl"
+                  >
                     {skill}
                   </li>
                 ))}
