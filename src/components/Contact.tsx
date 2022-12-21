@@ -4,6 +4,8 @@ import emailjs, { EmailJSResponseStatus } from "@emailjs/browser";
 
 const Contact = () => {
   const [isExpanded, setIsExpanded] = useState<boolean>(false);
+  const [error, setError] = useState<string>("");
+  const [success, setSuccess] = useState<string>("");
   const contactForm = useRef<HTMLFormElement>(null);
   const sendEmail = (e: React.FormEvent) => {
     e.preventDefault();
@@ -16,9 +18,17 @@ const Contact = () => {
         process.env.NEXT_PUBLIC_PUBLIC_KEY ?? "no public key"
       )
       .then((res: EmailJSResponseStatus) => {
-        console.log("SUCCESS!", res.status, res.text);
+        setSuccess("Message sent successfully!");
+        setTimeout(() => {
+          setSuccess("");
+        }, 3000);
       })
-      .catch((err: EmailJSResponseStatus) => console.log("FAILED!", err));
+      .catch((err: EmailJSResponseStatus) => {
+        setError("Message failed to send!");
+        setTimeout(() => {
+          setError("");
+        }, 3000);
+      });
     return contactForm.current?.reset();
   };
 
@@ -31,7 +41,7 @@ const Contact = () => {
   return (
     <Fade left>
       {isExpanded && (
-        <section className="bg-white dark:bg-gray-900">
+        <section className="">
           <div className="mx-auto max-w-screen-md px-4 py-8 lg:py-16">
             <h2 className="mb-4  bg-gradient-to-r from-red-200  to-pink-600  bg-clip-text text-center text-6xl font-extrabold tracking-tight text-transparent ">
               Contact me
@@ -89,6 +99,16 @@ const Contact = () => {
                   name="user_query"
                 ></textarea>
               </div>
+              {error && (
+                <div className="text-center font-semibold text-red-500">
+                  {error}
+                </div>
+              )}
+              {success && (
+                <div className="text-center font-semibold text-green-500">
+                  {success}
+                </div>
+              )}
               <input
                 type="submit"
                 value="Send message"
