@@ -15,16 +15,16 @@ const About = () => {
         <div className="flex items-center justify-center">
           <Fade left>
             <div className="w-auto transition-all lg:flex-col">
-              <h1 className="bg-gradient-to-r from-blue-200 to-pink-600 bg-clip-text text-center text-6xl font-extrabold text-transparent lg:m-5 ">
+              <h1 className="hidden bg-gradient-to-r from-blue-200 to-pink-600 bg-clip-text text-center text-6xl font-extrabold text-transparent lg:m-5 lg:block xl:block xxl:block ">
                 About
               </h1>
-              <div className="flex items-center lg:flex-row">
+              <div className="flex flex-col items-center lg:flex-row">
                 <Image
                   src="https://github.com/Jimmy-b36/portfolio/blob/main/public/images/ProfilePic.jpg?raw=true"
                   alt="Picture of the author"
                   width={600}
                   height={600}
-                  className="w-auto rounded-full md:h-[300px] xl:h-[600px]"
+                  className="mb-5 h-[200px] w-auto rounded-full md:h-[300px] xl:h-[600px]"
                 />
                 <p className="ml-10 w-64 whitespace-pre-line text-gray-200">
                   Lorem ipsum dolor sit amet consectetur adipisicing elit. Esse,
