@@ -11,11 +11,13 @@ interface IProjectsDataItem {
       data: {
         attributes: {
           url: string;
+          alt: string;
         };
       };
     };
     description: string;
-    URL: string;
+    webUrl: string;
+    gitUrl: string;
     title: string;
   };
 }
@@ -31,7 +33,7 @@ const FrontOfCard = ({ itemImage }: { itemImage: IProjectsDataItem }) => {
       src={`${process.env.NEXT_PUBLIC_STRAPI_URL}${itemImage.attributes.image.data.attributes.url}`}
       width={500}
       height={400}
-      alt="test"
+      alt={`${itemImage.attributes.image.data.attributes.alt}`}
       style={{ objectFit: "contain" }}
       className="rounded-lg"
     />
@@ -41,22 +43,48 @@ const FrontOfCard = ({ itemImage }: { itemImage: IProjectsDataItem }) => {
 const BackOfCard = ({ itemContent }: { itemContent: IProjectsDataItem }) => {
   return (
     <div
-      className={`flex h-[70%] w-full flex-col items-center justify-center rounded-lg bg-slate-500 md:h-[77%] lg:h-[77%] xl:h-full `}
+      className={`flex h-[70%] w-full flex-col items-center justify-center rounded-lg bg-slate-800 md:h-[70%] lg:h-[77%] xl:h-[70%] xxl:h-full `}
       key={itemContent.id}
     >
       {" "}
-      <p className="break normal text-lg font-bold text-white xl:text-2xl">
+      <p className="break normal text-lg font-bold text-white xl:text-xl">
         {itemContent.attributes.title}
       </p>{" "}
       <p className="text-sm text-white">{itemContent.attributes.description}</p>{" "}
-      <a
-        href={itemContent.attributes.URL}
-        target="_blank"
-        rel="noreferrer"
-        className="m-2 rounded-lg bg-orange-700 p-3"
-      >
-        URL link
-      </a>
+      <div className="flex flex-row">
+        <a
+          href={itemContent.attributes.gitUrl}
+          target="_blank"
+          rel="noreferrer"
+          className="m-2 "
+        >
+          <Image
+            src={
+              "https://github.com/Jimmy-b36/portfolio/blob/main/public/images/github-icon-white.png?raw=true"
+            }
+            alt="github_logo"
+            height={30}
+            width={30}
+          />
+        </a>
+        {itemContent.attributes.webUrl && (
+          <a
+            href={itemContent.attributes.webUrl}
+            target="_blank"
+            rel="noreferrer"
+            className="m-2 "
+          >
+            <Image
+              src={
+                "https://github.com/Jimmy-b36/portfolio/blob/main/public/images/web-logo.png?raw=true"
+              }
+              alt="github_logo"
+              height={30}
+              width={30}
+            />
+          </a>
+        )}
+      </div>
     </div>
   );
 };
@@ -94,6 +122,7 @@ const Projects = () => {
                 <div
                   className={styles.flip}
                   onTouchEnd={() => setIsTouchActive(!isTouchActive)}
+                  key={projectItem.id}
                 >
                   <div
                     className={styles.flipContent}
