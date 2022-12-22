@@ -121,7 +121,7 @@ const Projects = () => {
               projectsData.data.map((projectItem: IProjectsDataItem) => (
                 <div
                   className={styles.flip}
-                  onTouchEnd={() => setIsTouchActive(!isTouchActive)}
+                  onTouchMove={() => setIsTouchActive(!isTouchActive)}
                   key={projectItem.id}
                 >
                   <div
