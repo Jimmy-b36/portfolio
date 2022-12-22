@@ -1,13 +1,13 @@
 import { SetStateAction, Dispatch } from "react";
 
-interface IInfoBar {
+interface IAccordianButton {
   title: string;
   color: string;
   setPageSelected: Dispatch<SetStateAction<string>>;
   pageSelected: string;
 }
 
-const InfoBar = ({ title, color, setPageSelected, pageSelected }: IInfoBar) => {
+const AccordianButton = ({ title, color, setPageSelected, pageSelected }: IAccordianButton) => {
   return (
     <div className="flex min-w-full xl:flex-row">
       <button
@@ -28,4 +28,4 @@ const InfoBar = ({ title, color, setPageSelected, pageSelected }: IInfoBar) => {
   );
 };
 
-export default InfoBar;
+export default AccordianButton;
