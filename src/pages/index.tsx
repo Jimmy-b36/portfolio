@@ -1,6 +1,6 @@
 import { type NextPage } from "next";
-import InfoBar from "../components/InfoBar";
-import { Fragment, useEffect, useState } from "react";
+import AccordianButton from "../components/AccordianButton";
+import { Fragment, useState } from "react";
 import Skills from "../components/Skills";
 import About from "../components/About";
 import Projects from "../components/Projects";
@@ -29,7 +29,7 @@ const Index: NextPage = () => {
       {TITLES.map((item, index) => (
         <Fragment key={index}>
           <div>
-            <InfoBar
+            <AccordianButton
               title={item.title}
               color={item.color}
               setPageSelected={setPageSelected}
