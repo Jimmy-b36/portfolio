@@ -24,7 +24,7 @@ const About = () => {
                   alt="Picture of the author"
                   width={600}
                   height={600}
-                  className="mb-5 h-[200px] w-auto rounded-full md:h-[300px] xl:h-[600px]"
+                  className="h-[200px] w-auto rounded-full md:h-[300px] lg:mb-0 xl:mb-0 xl:h-[600px]"
                 />
                 <p className="m-3 w-full whitespace-pre-line p-3 text-center text-gray-200 lg:ml-10 lg:w-80 xl:ml-10 xl:w-80 xxl:ml-10 xxl:w-80">
                   I am a ski instructor and web developer with a passion for
