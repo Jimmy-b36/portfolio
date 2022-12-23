@@ -1,12 +1,14 @@
 import { MutableRefObject, useEffect, useRef, useState } from "react";
 import { Fade } from "react-reveal";
 import emailjs, { EmailJSResponseStatus } from "@emailjs/browser";
+import useExpandedTimeout from "../hooks/useExpandedTimeout";
 
 const Contact = () => {
-  const [isExpanded, setIsExpanded] = useState<boolean>(false);
   const [error, setError] = useState<string>("");
   const [success, setSuccess] = useState<string>("");
   const contactForm = useRef<HTMLFormElement>(null);
+  const isExpanded = useExpandedTimeout(850);
+
   const sendEmail = (e: React.FormEvent) => {
     e.preventDefault();
     console.log("🚀 ~ sendEmail ~ contactForm.current", typeof contactForm);
@@ -31,12 +33,6 @@ const Contact = () => {
       });
     return contactForm.current?.reset();
   };
-
-  useEffect(() => {
-    setTimeout(() => {
-      setIsExpanded(true);
-    }, 850);
-  }, []);
 
   return (
     <Fade left>

@@ -1,8 +1,9 @@
 import useSWR from "swr";
 import styles from "../styles/Projects.module.css";
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Fade } from "react-reveal";
+import useExpandedTimeout from "../hooks/useExpandedTimeout";
 
 interface IProjectsDataItem {
   id: number;
@@ -90,8 +91,8 @@ const BackOfCard = ({ itemContent }: { itemContent: IProjectsDataItem }) => {
 };
 
 const Projects = () => {
-  const [isExpanded, setIsExpanded] = useState(false);
   const [isTouchActive, setIsTouchActive] = useState(false);
+  const isExpanded = useExpandedTimeout(850);
 
   const { data: projectsData, error } = useSWR(
     [
@@ -100,13 +101,6 @@ const Projects = () => {
     ],
     fetcher
   );
-
-  useEffect(() => {
-    const x = setTimeout(() => {
-      setIsExpanded(true);
-    }, 850);
-    return () => clearTimeout(x);
-  }, []);
 
   if (error) return <div>failed to load</div>;
   return (

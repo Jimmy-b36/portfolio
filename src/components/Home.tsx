@@ -1,15 +1,10 @@
-import { useEffect, useState } from "react";
 import { Fade } from "react-reveal";
 import Typed from "react-typed";
+import useExpandedTimeout from "../hooks/useExpandedTimeout";
 
 const Home = () => {
-  const [isExpanded, setIsExpanded] = useState(false);
-  useEffect(() => {
-    const x = setTimeout(() => {
-      setIsExpanded(true);
-    }, 850);
-    return () => clearTimeout(x);
-  }, []);
+  const isExpanded = useExpandedTimeout(850);
+
   return (
     <>
       {isExpanded && (
