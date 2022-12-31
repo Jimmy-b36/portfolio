@@ -1,7 +1,7 @@
 import { MutableRefObject, useEffect, useRef, useState } from "react";
 import { Fade } from "react-reveal";
 import emailjs, { EmailJSResponseStatus } from "@emailjs/browser";
-import useExpandedTimeout from "../hooks/useExpandedTimeout";
+import useExpandedTimeout from "../hooks/useIsExpandedTimeout";
 
 const Contact = () => {
   const [error, setError] = useState<string>("");
@@ -39,7 +39,7 @@ const Contact = () => {
       {isExpanded && (
         <section className="">
           <div className="mx-auto max-w-screen-md px-4 ">
-            <h2 className="mb-4 bg-gradient-to-r from-red-200  to-pink-600  bg-clip-text text-center text-6xl font-extrabold tracking-tight text-transparent ">
+            <h2 className="mb-4 bg-gradient-to-r from-red-200 to-pink-600 bg-clip-text text-center text-6xl font-extrabold tracking-tight text-transparent ">
               Contact me
             </h2>
             <p className="mb-8 text-center font-light text-gray-500 dark:text-gray-400 sm:text-xl lg:mb-16">

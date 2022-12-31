@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import TagSphere from "./TagSphere";
 import { Fade } from "react-reveal";
-import useExpandedTimeout from "../hooks/useExpandedTimeout";
+import useExpandedTimeout from "../hooks/useIsExpandedTimeout";
 
 const SKILLS = [
   "TypeScript, ",
