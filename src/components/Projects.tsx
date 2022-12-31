@@ -3,38 +3,26 @@ import styles from "../styles/Projects.module.css";
 import Image from "next/image";
 import { useState } from "react";
 import { Fade } from "react-reveal";
-import useExpandedTimeout from "../hooks/useExpandedTimeout";
+import useExpandedTimeout from "../hooks/useIsExpandedTimeout";
 
 interface IProjectsDataItem {
   id: number;
-  attributes: {
-    image: {
-      data: {
-        attributes: {
-          url: string;
-          alt: string;
-        };
-      };
-    };
-    description: string;
-    webUrl: string;
-    gitUrl: string;
-    title: string;
-  };
+  description: string;
+  webUrl: string;
+  gitUrl: string;
+  title: string;
+  image: string;
 }
 
-const fetcher = (url: string, token: []) =>
-  fetch(url, { headers: { Authorization: "Bearer " + token } }).then((res) =>
-    res.json()
-  );
+const fetcher = (url: string) => fetch(url).then((res) => res.json());
 
 const FrontOfCard = ({ itemImage }: { itemImage: IProjectsDataItem }) => {
   return (
     <Image
-      src={`${process.env.NEXT_PUBLIC_STRAPI_URL}${itemImage.attributes.image.data.attributes.url}`}
+      src={`${itemImage.image}}`}
       width={500}
       height={400}
-      alt={`${itemImage.attributes.image.data.attributes.alt}`}
+      alt={`need to add alt text for ${itemImage.title}`}
       style={{ objectFit: "contain" }}
       className="rounded-lg"
     />
@@ -49,12 +37,12 @@ const BackOfCard = ({ itemContent }: { itemContent: IProjectsDataItem }) => {
     >
       {" "}
       <p className="break normal text-lg font-bold text-white xl:text-xl">
-        {itemContent.attributes.title}
+        {itemContent.title}
       </p>{" "}
-      <p className="text-sm text-white">{itemContent.attributes.description}</p>{" "}
+      <p className="text-sm text-white">{itemContent.description}</p>{" "}
       <div className="flex flex-row">
         <a
-          href={itemContent.attributes.gitUrl}
+          href={itemContent.gitUrl}
           target="_blank"
           rel="noreferrer"
           className="m-2 "
@@ -68,9 +56,9 @@ const BackOfCard = ({ itemContent }: { itemContent: IProjectsDataItem }) => {
             width={30}
           />
         </a>
-        {itemContent.attributes.webUrl && (
+        {itemContent.webUrl && (
           <a
-            href={itemContent.attributes.webUrl}
+            href={itemContent.webUrl}
             target="_blank"
             rel="noreferrer"
             className="m-2 "
@@ -94,13 +82,8 @@ const Projects = () => {
   const [isTouchActive, setIsTouchActive] = useState(false);
   const isExpanded = useExpandedTimeout(850);
 
-  const { data: projectsData, error } = useSWR(
-    [
-      `http://localhost:1337/api/projects?populate=*`,
-      process.env.NEXT_PUBLIC_STRAPI_TOKEN,
-    ],
-    fetcher
-  );
+  const { data: projectsData, error } = useSWR("api/staticProject", fetcher);
+  console.log(projectsData);
 
   if (error) return <div>failed to load</div>;
   return (
