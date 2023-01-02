@@ -149,15 +149,16 @@ let defaultState: tagSphereProps = {
 };
 
 (async () => {
-  const tagSphereData = await fetch(
-    `http://localhost:1337/api/skills?populate=*`,
-    {
-      headers: {
-        Authorization: "Bearer " + process.env.NEXT_PUBLIC_STRAPI_TOKEN,
-      },
-    }
-  ).then((res) => res.json());
+  const tagSphereData = await fetch("api/staticSkill").then((res) =>
+    res.json()
+  );
 
+  // `http://localhost:1337/api/skills?populate=*`,
+  // {
+  //   headers: {
+  //     Authorization: "Bearer " + process.env.NEXT_PUBLIC_STRAPI_TOKEN,
+  //   },
+  // }
   defaultState = {
     ...defaultState,
     texts: tagSphereData.data.map((item: any) => (
@@ -169,8 +170,8 @@ let defaultState: tagSphereProps = {
         width={
           window.innerWidth > 1440 ? 75 : window.innerWidth > 1020 ? 50 : 40
         }
-        src={`${process.env.NEXT_PUBLIC_STRAPI_URL}${item.attributes.image.data.attributes.url}`}
-        alt={item.attributes.alt}
+        src={item.image}
+        alt={item.alt}
       />
     )),
   };
