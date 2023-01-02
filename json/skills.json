@@ -1,0 +1,104 @@
+{
+  "data": [
+    {
+      "alt": "Bootstrap logo",
+      "image": "https://raw.githubusercontent.com/Jimmy-b36/portfolio/9dd9d2b86756de407e742f8f15f20e0f4a776da4/public/images/svg%20logos/bootstrap-4.svg"
+    },
+    {
+      "alt": "CSS3 logo",
+      "image": "https://raw.githubusercontent.com/Jimmy-b36/portfolio/9dd9d2b86756de407e742f8f15f20e0f4a776da4/public/images/svg%20logos/css-3.svg"
+    },
+    {
+      "alt": "HTML5 logo",
+      "image": "https://raw.githubusercontent.com/Jimmy-b36/portfolio/9dd9d2b86756de407e742f8f15f20e0f4a776da4/public/images/svg%20logos/html-1.svg"
+    },
+    {
+      "alt": "Chai logo",
+      "image": "https://raw.githubusercontent.com/Jimmy-b36/portfolio/9dd9d2b86756de407e742f8f15f20e0f4a776da4/public/images/svg%20logos/chai.svg"
+    },
+    {
+      "alt": "Cypress logo",
+      "image": "https://raw.githubusercontent.com/Jimmy-b36/portfolio/7297b473088d4b77509109ca3fc78c6f87b6b63e/public/images/svg%20logos/cypress-io-logos-idZxkJkFIi.svg"
+    },
+    {
+      "alt": "Express logo",
+      "image": "https://raw.githubusercontent.com/Jimmy-b36/portfolio/9dd9d2b86756de407e742f8f15f20e0f4a776da4/public/images/svg%20logos/express-109.svg"
+    },
+    {
+      "alt": "Git logo",
+      "image": "https://raw.githubusercontent.com/Jimmy-b36/portfolio/9dd9d2b86756de407e742f8f15f20e0f4a776da4/public/images/svg%20logos/git.svg"
+    },
+    {
+      "alt": "JavaScript logo",
+      "image": "https://raw.githubusercontent.com/Jimmy-b36/portfolio/9dd9d2b86756de407e742f8f15f20e0f4a776da4/public/images/svg%20logos/logo-javascript.svg"
+    },
+    {
+      "alt": "Jest logo",
+      "image": "https://raw.githubusercontent.com/Jimmy-b36/portfolio/9dd9d2b86756de407e742f8f15f20e0f4a776da4/public/images/svg%20logos/jest-2.svg"
+    },
+    {
+      "alt": "Mocha logo",
+      "image": "https://raw.githubusercontent.com/Jimmy-b36/portfolio/9dd9d2b86756de407e742f8f15f20e0f4a776da4/public/images/svg%20logos/mocha-1.svg"
+    },
+    {
+      "alt": "React logo",
+      "image": "https://upload.wikimedia.org/wikipedia/commons/a/a7/React-icon.svg"
+    },
+    {
+      "alt": "Jquery logo",
+      "image": "https://raw.githubusercontent.com/Jimmy-b36/portfolio/9dd9d2b86756de407e742f8f15f20e0f4a776da4/public/images/svg%20logos/jquery-1.svg"
+    },
+    {
+      "alt": "NodeJS logo",
+      "image": "https://raw.githubusercontent.com/Jimmy-b36/portfolio/9dd9d2b86756de407e742f8f15f20e0f4a776da4/public/images/svg%20logos/nodejs-icon.svg"
+    },
+    {
+      "alt": "MongoDB logo",
+      "image": "https://raw.githubusercontent.com/Jimmy-b36/portfolio/9dd9d2b86756de407e742f8f15f20e0f4a776da4/public/images/svg%20logos/mocha-1.svg"
+    },
+    {
+      "alt": "NextJS logo",
+      "image": "https://raw.githubusercontent.com/Jimmy-b36/portfolio/9dd9d2b86756de407e742f8f15f20e0f4a776da4/public/images/svg%20logos/next-js.svg"
+    },
+    {
+      "alt": "PostgreSQL logo",
+      "image": "https://raw.githubusercontent.com/Jimmy-b36/portfolio/9dd9d2b86756de407e742f8f15f20e0f4a776da4/public/images/svg%20logos/postgresql.svg"
+    },
+    {
+      "alt": "Prisma logo",
+      "image": "https://raw.githubusercontent.com/Jimmy-b36/portfolio/9dd9d2b86756de407e742f8f15f20e0f4a776da4/public/images/svg%20logos/prisma-2.svg"
+    },
+    {
+      "alt": "Rails logo",
+      "image": "https://raw.githubusercontent.com/Jimmy-b36/portfolio/9dd9d2b86756de407e742f8f15f20e0f4a776da4/public/images/svg%20logos/rails-1.svg"
+    },
+    {
+      "alt": "Ruby logo",
+      "image": "https://raw.githubusercontent.com/Jimmy-b36/portfolio/9dd9d2b86756de407e742f8f15f20e0f4a776da4/public/images/svg%20logos/ruby.svg"
+    },
+    {
+      "alt": "Sass logo",
+      "image": "https://raw.githubusercontent.com/Jimmy-b36/portfolio/9dd9d2b86756de407e742f8f15f20e0f4a776da4/public/images/svg%20logos/sass-1.svg"
+    },
+    {
+      "alt": "Storybook logo",
+      "image": "https://raw.githubusercontent.com/Jimmy-b36/portfolio/9dd9d2b86756de407e742f8f15f20e0f4a776da4/public/images/svg%20logos/storybook-1.svg"
+    },
+    {
+      "alt": "Tailwind logo",
+      "image": "https://raw.githubusercontent.com/Jimmy-b36/portfolio/9dd9d2b86756de407e742f8f15f20e0f4a776da4/public/images/svg%20logos/tailwind-css-2.svg"
+    },
+    {
+      "alt": "TypeScript logo",
+      "image": "https://raw.githubusercontent.com/Jimmy-b36/portfolio/64a214d2d0704a920b2d58e0915c34e041619d32/public/images/svg%20logos/typescript-2.svg"
+    },
+    {
+      "alt": "Vite logo",
+      "image": "https://raw.githubusercontent.com/Jimmy-b36/portfolio/9dd9d2b86756de407e742f8f15f20e0f4a776da4/public/images/svg%20logos/vitejs.svg"
+    },
+    {
+      "alt": "Python logo",
+      "image": "https://raw.githubusercontent.com/Jimmy-b36/portfolio/64a214d2d0704a920b2d58e0915c34e041619d32/public/images/svg%20logos/icons8-python.svg"
+    }
+  ]
+}
