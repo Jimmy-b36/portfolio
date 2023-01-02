@@ -1,9 +1,9 @@
 import Image from "next/image";
 import { Fade } from "react-reveal";
-import useExpandedTimeout from "../hooks/useIsExpandedTimeout";
+import useIsExpandedTimeout from "../hooks/useIsExpandedTimeout";
 
 const About = () => {
-  const isExpanded = useExpandedTimeout(850);
+  const isExpanded = useIsExpandedTimeout(850);
   return (
     <>
       {isExpanded && (

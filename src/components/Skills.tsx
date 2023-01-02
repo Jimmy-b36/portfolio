@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import TagSphere from "./TagSphere";
 import { Fade } from "react-reveal";
-import useExpandedTimeout from "../hooks/useIsExpandedTimeout";
+import useIsExpandedTimeout from "../hooks/useIsExpandedTimeout";
 
 const SKILLS = [
   "TypeScript, ",
@@ -33,7 +33,7 @@ const SKILLS = [
 
 const Skills = () => {
   const [isListView, setIsListView] = useState<boolean>(false);
-  const isExpanded = useExpandedTimeout(850);
+  const isExpanded = useIsExpandedTimeout(850);
 
   return (
     <div className="flex w-full flex-col items-center justify-center">

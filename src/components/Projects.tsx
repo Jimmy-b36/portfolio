@@ -3,7 +3,7 @@ import styles from "../styles/Projects.module.css";
 import Image from "next/image";
 import { useState } from "react";
 import { Fade } from "react-reveal";
-import useExpandedTimeout from "../hooks/useIsExpandedTimeout";
+import useIsExpandedTimeout from "../hooks/useIsExpandedTimeout";
 
 interface IProjectsDataItem {
   id: number;
@@ -80,7 +80,7 @@ const BackOfCard = ({ itemContent }: { itemContent: IProjectsDataItem }) => {
 
 const Projects = () => {
   const [isTouchActive, setIsTouchActive] = useState(false);
-  const isExpanded = useExpandedTimeout(850);
+  const isExpanded = useIsExpandedTimeout(850);
 
   const { data: projectsData, error } = useSWR("api/staticProject", fetcher);
   console.log(projectsData);

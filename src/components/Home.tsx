@@ -1,9 +1,9 @@
 import { Fade } from "react-reveal";
 import Typed from "react-typed";
-import useExpandedTimeout from "../hooks/useIsExpandedTimeout";
+import useIsExpandedTimeout from "../hooks/useIsExpandedTimeout";
 
 const Home = () => {
-  const isExpanded = useExpandedTimeout(850);
+  const isExpanded = useIsExpandedTimeout(850);
 
   return (
     <>

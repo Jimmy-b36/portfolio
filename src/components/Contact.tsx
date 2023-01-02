@@ -1,13 +1,13 @@
 import { MutableRefObject, useEffect, useRef, useState } from "react";
 import { Fade } from "react-reveal";
 import emailjs, { EmailJSResponseStatus } from "@emailjs/browser";
-import useExpandedTimeout from "../hooks/useIsExpandedTimeout";
+import useIsExpandedTimeout from "../hooks/useIsExpandedTimeout";
 
 const Contact = () => {
   const [error, setError] = useState<string>("");
   const [success, setSuccess] = useState<string>("");
   const contactForm = useRef<HTMLFormElement>(null);
-  const isExpanded = useExpandedTimeout(850);
+  const isExpanded = useIsExpandedTimeout(850);
 
   const sendEmail = (e: React.FormEvent) => {
     e.preventDefault();

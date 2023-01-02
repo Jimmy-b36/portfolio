@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-const useExpandedTimeout = (delay: number) => {
+const useIsExpandedTimeout = (delay: number) => {
   const [isExpanded, setIsExpanded] = useState<boolean>(false);
 
   useEffect(() => {
@@ -13,4 +13,4 @@ const useExpandedTimeout = (delay: number) => {
   return isExpanded;
 };
 
-export default useExpandedTimeout;
+export default useIsExpandedTimeout;
