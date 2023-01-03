@@ -1,14 +1,14 @@
 import Image from "next/image";
-import { Fade } from "react-reveal";
+
 import useIsExpandedTimeout from "../hooks/useIsExpandedTimeout";
 
 const About = () => {
-  const isExpanded = useIsExpandedTimeout(850);
+  const isExpanded = useIsExpandedTimeout();
   return (
     <>
       {isExpanded && (
         <div className="flex items-center justify-center">
-          <Fade left>
+          <div className="animate-fade-left">
             <div className="w-auto transition-all lg:flex-col">
               <h1 className="hidden bg-gradient-to-r from-blue-200 to-pink-600 bg-clip-text text-center text-6xl font-extrabold text-transparent lg:m-5 lg:block xl:block xxl:block ">
                 About
@@ -34,7 +34,7 @@ const About = () => {
                 </p>
               </div>
             </div>
-          </Fade>
+          </div>
         </div>
       )}
     </>

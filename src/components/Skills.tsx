@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import TagSphere from "./TagSphere";
-import { Fade } from "react-reveal";
 import useIsExpandedTimeout from "../hooks/useIsExpandedTimeout";
 
 const SKILLS = [
@@ -33,12 +32,12 @@ const SKILLS = [
 
 const Skills = () => {
   const [isListView, setIsListView] = useState<boolean>(false);
-  const isExpanded = useIsExpandedTimeout(850);
+  const isExpanded = useIsExpandedTimeout();
 
   return (
-    <div className="flex w-full flex-col items-center justify-center">
+    <>
       {isExpanded && (
-        <Fade left>
+        <div className="flex w-full animate-fade-left flex-col items-center justify-center">
           <h1 className="mt-10 hidden w-full bg-gradient-to-r from-blue-200 to-pink-600 bg-clip-text text-center text-6xl font-extrabold text-transparent lg:block xl:block xxl:block">
             Skills
           </h1>
@@ -68,9 +67,9 @@ const Skills = () => {
               <TagSphere />
             </div>
           )}
-        </Fade>
+        </div>
       )}
-    </div>
+    </>
   );
 };
 
