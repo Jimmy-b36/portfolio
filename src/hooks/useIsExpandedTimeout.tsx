@@ -1,12 +1,13 @@
 import { useEffect, useState } from "react";
 
-const useIsExpandedTimeout = (delay: number) => {
+const DELAY = 850;
+const useIsExpandedTimeout = () => {
   const [isExpanded, setIsExpanded] = useState<boolean>(false);
 
   useEffect(() => {
     const x = setTimeout(() => {
       setIsExpanded(true);
-    }, delay);
+    }, DELAY);
     return () => clearTimeout(x);
   }, []);
 
