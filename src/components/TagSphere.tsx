@@ -51,11 +51,15 @@ const computeInitialPosition = (
 const updateItemPosition = (item: any, sc: number[], depth: number) => {
   const newItem = { ...item, scale: "" };
   const rx1 = item.x;
+  //@ts-ignore
   const ry1 = item.y * sc[1] + item.z * -sc[0];
+  //@ts-ignore
   const rz1 = item.y * sc[0] + item.z * sc[1];
 
+  //@ts-ignore
   const rx2 = rx1 * sc[3] + rz1 * sc[2];
   const ry2 = ry1;
+  //@ts-ignore
   const rz2 = rz1 * sc[3] - rx1 * sc[2];
 
   const per = (2 * depth) / (2 * depth + rz2); // todo
