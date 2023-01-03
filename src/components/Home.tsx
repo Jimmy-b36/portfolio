@@ -1,24 +1,22 @@
-import { Fade } from "react-reveal";
-import Typed from "react-typed";
+import Typewriter from "typewriter-effect";
 import useIsExpandedTimeout from "../hooks/useIsExpandedTimeout";
 
 const Home = () => {
-  const isExpanded = useIsExpandedTimeout(850);
-
+  const isExpanded = useIsExpandedTimeout();
   return (
     <>
       {isExpanded && (
-        <Fade left>
+        <div className="flex w-full animate-fade-left items-center justify-center">
           <div className="flex h-[36rem] w-full items-center justify-center bg-gradient-to-r from-blue-200 to-pink-600 bg-clip-text text-5xl font-bold text-transparent lg:h-screen lg:text-8xl xl:h-screen xl:text-9xl xxl:h-screen xxl:text-9xl">
-            <Typed
-              strings={["James Ball", "Developer,", "Streamer,", "Skier."]}
-              typeSpeed={100}
-              backSpeed={50}
-              style={{}}
-              loop
+            <Typewriter
+              options={{
+                strings: ["James Ball", "Developer,", "Streamer,", "Skier."],
+                autoStart: true,
+                loop: true,
+              }}
             />
           </div>
-        </Fade>
+        </div>
       )}
     </>
   );
