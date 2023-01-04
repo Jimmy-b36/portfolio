@@ -392,7 +392,7 @@ const TagSphere = (props: any) => {
           : undefined
       }
     >
-      {items.map((item) => item.el)}
+      {items?.map((item) => item?.el)}
     </div>
   );
 };
