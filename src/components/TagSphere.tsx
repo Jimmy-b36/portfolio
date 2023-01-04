@@ -261,7 +261,7 @@ const TagSphere = (props: any) => {
         createItem(text, index, texts.length, size, itemHooks[index])
       )
     );
-  }, [texts, size]);
+  }, [size]);
 
   const containerRef = useRef<HTMLDivElement>(null);
   const [firstRender, setFirstRender] = useState(true);
