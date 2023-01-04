@@ -1,6 +1,6 @@
 import { useRef, useState } from "react";
 
-import emailjs, { EmailJSResponseStatus } from "@emailjs/browser";
+import emailjs from "@emailjs/browser";
 import useIsExpandedTimeout from "../hooks/useIsExpandedTimeout";
 
 const Contact = () => {
@@ -19,13 +19,13 @@ const Contact = () => {
         contactForm.current ?? "no form",
         process.env.NEXT_PUBLIC_EMAIL_PUBLIC_KEY ?? "no public key"
       )
-      .then((res: EmailJSResponseStatus) => {
+      .then(() => {
         setSuccess("Message sent successfully!");
         setTimeout(() => {
           setSuccess("");
         }, 3000);
       })
-      .catch((err: EmailJSResponseStatus) => {
+      .catch(() => {
         setError("Message failed to send!");
         setTimeout(() => {
           setError("");
@@ -44,9 +44,9 @@ const Contact = () => {
                 Contact me
               </h2>
               <p className="mb-8 text-center font-light text-gray-500 dark:text-gray-400 sm:text-xl lg:mb-16">
-                I'm always looking for new & exciting opportunities. If you have
-                any questions or just want to say hi, feel free to send me a
-                message.
+                I&apos;m always looking for new & exciting opportunities. If you
+                have any questions or just want to say hi, feel free to send me
+                a message.
               </p>
               <form
                 className="space-y-8"
