@@ -200,7 +200,7 @@ const TagSphere = (props: any) => {
       size: 1.5 * TEXT_LENGTH_STANDARD,
     },
     large: {
-      radius: 15,
+      radius: 14,
       size: 2 * TEXT_LENGTH_STANDARD,
     },
   };
