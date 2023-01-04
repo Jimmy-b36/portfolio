@@ -7,6 +7,15 @@
 
 /** @type {import("next").NextConfig} */
 const config = {
+  async rewrites() {
+    return [
+      {
+        source: "/api/:path*",
+        destination: "http://james-ball.dev",
+      },
+    ];
+  },
+
   reactStrictMode: false,
   swcMinify: true,
   i18n: {
@@ -23,4 +32,5 @@ const config = {
     ],
   },
 };
+
 export default config;
