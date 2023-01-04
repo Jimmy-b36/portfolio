@@ -23,14 +23,14 @@ const About = () => {
                 />
                 <p className="m-3 w-full whitespace-pre-line p-3 text-center text-gray-200 lg:ml-10 lg:w-80 xl:ml-10 xl:w-80 xxl:ml-10 xxl:w-80">
                   I am a ski instructor and web developer with a passion for
-                  using technology to solve problems and improve people's lives.
-                  In my free time, I am also an aspiring smart contract builder,
-                  constantly learning and experimenting with new blockchain
-                  technologies. I believe that the intersection of these skills
-                  and interests allows me to bring a unique perspective to my
-                  work and projects. Whether I'm teaching someone to ski or
-                  building a web application, I am always looking for ways to
-                  innovate and make a positive impact.
+                  using technology to solve problems and improve people&apos;s
+                  lives. In my free time, I am also an aspiring smart contract
+                  builder, constantly learning and experimenting with new
+                  blockchain technologies. I believe that the intersection of
+                  these skills and interests allows me to bring a unique
+                  perspective to my work and projects. Whether I&apos;m teaching
+                  someone to ski or building a web application, I am always
+                  looking for ways to innovate and make a positive impact.
                 </p>
               </div>
             </div>
