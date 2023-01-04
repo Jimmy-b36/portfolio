@@ -146,9 +146,9 @@ let defaultState: tagSphereProps = {
 };
 
 (async () => {
-  const tagSphereData = await fetch("api/staticSkill").then((res) =>
-    res.json()
-  );
+  const tagSphereData = await fetch(
+    `${process.env.NEXT_PUBLIC_DOMAIN_PATH}/api/staticSkill`
+  ).then((res) => res.json());
 
   // `http://localhost:1337/api/skills?populate=*`,
   // {
