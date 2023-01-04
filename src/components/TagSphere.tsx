@@ -49,17 +49,13 @@ const computeInitialPosition = (
 };
 
 const updateItemPosition = (item: any, sc: number[], depth: number) => {
+  if (!sc[1] || !sc[0] || !sc[2] || !sc[3]) return;
   const newItem = { ...item, scale: "" };
   const rx1 = item.x;
-  //@ts-ignore
   const ry1 = item.y * sc[1] + item.z * -sc[0];
-  //@ts-ignore
   const rz1 = item.y * sc[0] + item.z * sc[1];
-
-  //@ts-ignore
   const rx2 = rx1 * sc[3] + rz1 * sc[2];
   const ry2 = ry1;
-  //@ts-ignore
   const rz2 = rz1 * sc[3] - rx1 * sc[2];
 
   const per = (2 * depth) / (2 * depth + rz2); // todo
@@ -76,26 +72,24 @@ const updateItemPosition = (item: any, sc: number[], depth: number) => {
   alpha = parseFloat((alpha > 1 ? 1 : alpha).toFixed(3));
 
   const itemEl = newItem.ref.current;
-  // @ts-ignore
+
   const left = (newItem.x - itemEl.offsetWidth / 2).toFixed(2);
-  // @ts-ignore
+
   const top = (newItem.y - itemEl.offsetHeight / 2).toFixed(2);
   const transform = `translate3d(${left}px, ${top}px, 0) scale(${newItem.scale})`;
 
-  // @ts-ignore
   itemEl.style.WebkitTransform = transform;
-  // @ts-ignore
+
   itemEl.style.MozTransform = transform;
-  // @ts-ignore
+
   itemEl.style.OTransform = transform;
-  // @ts-ignore
+
   itemEl.style.transform = transform;
-  // @ts-ignore
+
   itemEl.style.filter = `grayscale(${(alpha - 1) * -8}) blur(${
     (alpha - 1) * -5 > 1 ? Math.floor((alpha - 1) * -8) : 0
   }px)`;
   itemEl.style.zIndex = Math.floor(alpha * 1000);
-  // @ts-ignore
   itemEl.style.opacity = alpha;
 
   return newItem;
@@ -127,7 +121,6 @@ const createItem = (
     OTransform: transform,
     transform: transform,
   } as CSSProperties;
-  // @ts-ignore
   const itemEl = (
     <span ref={itemRef} key={index} style={itemStyles}>
       {text}
@@ -167,6 +160,7 @@ let defaultState: tagSphereProps = {
     ...defaultState,
     texts: tagSphereData.data.map((item: any) => (
       <img
+        key={item.id}
         className="tag-sphere-image"
         height={
           window.innerWidth > 1440 ? 20 : window.innerWidth > 1020 ? 15 : 12
@@ -234,7 +228,7 @@ const TagSphere = (props: any) => {
 
   useEffect(() => {
     const tagSphereItems = document.getElementsByClassName("tag-sphere-image");
-    for (let item of tagSphereItems) {
+    for (const item of tagSphereItems) {
       screenWidth > 1440
         ? (item.setAttribute("height", "20"), item.setAttribute("width", "75"))
         : screenWidth > 1020
@@ -269,7 +263,7 @@ const TagSphere = (props: any) => {
     );
   }, [texts, size]);
 
-  const containerRef = useRef(null);
+  const containerRef = useRef<HTMLDivElement>(null);
   const [firstRender, setFirstRender] = useState(true);
   const [lessSpeed, setLessSpeed] = useState(maxSpeed);
   const [active, setActive] = useState(false);
@@ -277,7 +271,7 @@ const TagSphere = (props: any) => {
   const [mouseY, setMouseY] = useState(0);
 
   const handleMouseMove = (e: any) => {
-    // @ts-ignore
+    if (!containerRef.current) return;
     const rect = containerRef.current.getBoundingClientRect();
 
     setMouseX(() => (e.clientX - (rect.left + rect.width / 2)) / 5);
@@ -285,7 +279,7 @@ const TagSphere = (props: any) => {
   };
 
   const checkTouchCoordinates = (e: any) => {
-    // @ts-ignore
+    if (!containerRef.current) return;
     const rect = containerRef.current.getBoundingClientRect();
     const touchX = e.targetTouches[0].clientX;
     const touchY = e.targetTouches[0].clientY;
