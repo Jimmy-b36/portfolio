@@ -1,4 +1,4 @@
-import { SetStateAction, Dispatch } from "react";
+import type { SetStateAction, Dispatch } from "react";
 
 interface IAccordianButton {
   title: string;
@@ -7,7 +7,12 @@ interface IAccordianButton {
   pageSelected: string;
 }
 
-const AccordianButton = ({ title, color, setPageSelected, pageSelected }: IAccordianButton) => {
+const AccordianButton = ({
+  title,
+  color,
+  setPageSelected,
+  pageSelected,
+}: IAccordianButton) => {
   return (
     <div className="flex min-w-full xl:flex-row">
       <button
