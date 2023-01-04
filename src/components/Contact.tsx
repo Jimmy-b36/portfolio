@@ -40,7 +40,7 @@ const Contact = () => {
         <div className="animate-fade-left">
           <section className="">
             <div className="mx-auto max-w-screen-md px-4 ">
-              <h2 className="mb-4 bg-gradient-to-r from-red-200 to-pink-600 bg-clip-text text-center text-6xl font-extrabold tracking-tight text-transparent ">
+              <h2 className="mb-4 hidden bg-gradient-to-r from-red-200 to-pink-600 bg-clip-text text-center text-6xl font-extrabold tracking-tight text-transparent md:block lg:block xl:block xxl:block ">
                 Contact me
               </h2>
               <p className="mb-8 text-center font-light text-gray-500 dark:text-gray-400 sm:text-xl lg:mb-16">
