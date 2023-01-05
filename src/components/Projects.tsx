@@ -83,7 +83,6 @@ const Projects = () => {
   const isExpanded = useIsExpandedTimeout();
 
   const { data: projectsData, error } = useSWR("api/staticProject", fetcher);
-  console.log(projectsData);
 
   if (error) return <div>failed to load</div>;
   return (
