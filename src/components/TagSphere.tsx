@@ -1,6 +1,7 @@
 import {
   createRef,
   CSSProperties,
+  MutableRefObject,
   ReactNode,
   useEffect,
   useRef,
@@ -22,6 +23,13 @@ type tagSphereProps = {
   fullHeight: boolean;
 };
 
+interface IItem {
+  x: number;
+  y: number;
+  z: number;
+  el: HTMLSpanElement;
+  ref: MutableRefObject<null>;
+}
 const defaultStyles = {
   getContainer: (radius: number, fullWidth: boolean, fullHeight: boolean) =>
     ({
@@ -49,7 +57,7 @@ const computeInitialPosition = (
 };
 
 const updateItemPosition = (item: any, sc: number[], depth: number) => {
-  if (!sc[1] || !sc[0] || !sc[2] || !sc[3]) return;
+  if (!sc[1] || !sc[0] || !sc[2] || !sc[3]) return item;
   const newItem = { ...item, scale: "" };
   const rx1 = item.x;
   const ry1 = item.y * sc[1] + item.z * -sc[0];
@@ -156,6 +164,7 @@ let defaultState: tagSphereProps = {
   //     Authorization: "Bearer " + process.env.NEXT_PUBLIC_STRAPI_TOKEN,
   //   },
   // }
+
   defaultState = {
     ...defaultState,
     texts: tagSphereData.data.map((item: any) => (
@@ -246,7 +255,7 @@ const TagSphere = (props: any) => {
   }, [screenWidth]);
 
   const itemHooks = texts.map(() => createRef());
-  const [items, setItems]: [any[], any] = useState([]);
+  const [items, setItems]: [IItem[], any] = useState([]);
 
   useEffect(() => {
     const handleResize = () => setWidth(window.innerWidth);
@@ -261,7 +270,7 @@ const TagSphere = (props: any) => {
         createItem(text, index, texts.length, size, itemHooks[index])
       )
     );
-  }, [size]);
+  }, [texts, size]);
 
   const containerRef = useRef<HTMLDivElement>(null);
   const [firstRender, setFirstRender] = useState(true);
@@ -296,8 +305,9 @@ const TagSphere = (props: any) => {
     return false;
   };
 
+  //! I believe this is the problematic function
   const next = () => {
-    setItems((items: any) => {
+    setItems((items: IItem[]) => {
       if (lessSpeed == 0) return items;
 
       let a: number, b: number;
@@ -334,8 +344,10 @@ const TagSphere = (props: any) => {
         Math.sin(b * l),
         Math.cos(b * l),
       ];
-
-      return items.map((item: any) => updateItemPosition(item, sc, depth));
+      const updatedItems = items.map((item: IItem) => {
+        return updateItemPosition(item, sc, depth);
+      });
+      return updatedItems;
     });
   };
 
@@ -344,16 +356,14 @@ const TagSphere = (props: any) => {
     const mouseX0 = initialSpeed * Math.sin(initialDirection * (Math.PI / 180));
     const mouseY0 =
       -initialSpeed * Math.cos(initialDirection * (Math.PI / 180));
-
     setMouseX(() => mouseX0);
     setMouseY(() => mouseY0);
-
     next();
   };
 
   useEffect(() => {
     init();
-    setItems((items: any) => [...items]);
+    setItems((items: IItem[]) => [...items]);
   }, []);
 
   useEffect(() => {
@@ -392,7 +402,7 @@ const TagSphere = (props: any) => {
           : undefined
       }
     >
-      {items.map((item) => item.el)}
+      {items?.map((item: any) => item?.el)}
     </div>
   );
 };
