@@ -8,6 +8,10 @@ import {
   useState,
 } from "react";
 
+// Big shout out to this guy for the original code and solving all the Mathy stuff
+// https://github.com/jjsanmartino03/react-tag-sphere/blob/main/src/index.tsx
+// I added a few things to make it work with NextJS, Typescript and dynamic data
+
 type tagSphereProps = {
   texts: (string | ReactNode)[];
   radius?: number;
