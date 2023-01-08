@@ -32,7 +32,7 @@ interface IItem {
   y: number;
   z: number;
   el: HTMLSpanElement;
-  ref: MutableRefObject<null>;
+  ref: MutableRefObject<HTMLSpanElement>;
 }
 const defaultStyles = {
   getContainer: (radius: number, fullWidth: boolean, fullHeight: boolean) =>
@@ -60,7 +60,7 @@ const computeInitialPosition = (
   };
 };
 
-const updateItemPosition = (item: any, sc: number[], depth: number) => {
+const updateItemPosition = (item: IItem, sc: number[], depth: number) => {
   if (!sc[1] || !sc[0] || !sc[2] || !sc[3]) return item;
   const newItem = { ...item, scale: "" };
   const rx1 = item.x;
@@ -83,26 +83,22 @@ const updateItemPosition = (item: any, sc: number[], depth: number) => {
   let alpha: number = per * per - 0.25;
   alpha = parseFloat((alpha > 1 ? 1 : alpha).toFixed(3));
 
-  const itemEl = newItem.ref.current;
+  const itemEl: HTMLSpanElement = newItem.ref.current;
+
+  if (!itemEl) return item;
 
   const left = (newItem.x - itemEl.offsetWidth / 2).toFixed(2);
 
   const top = (newItem.y - itemEl.offsetHeight / 2).toFixed(2);
   const transform = `translate3d(${left}px, ${top}px, 0) scale(${newItem.scale})`;
 
-  itemEl.style.WebkitTransform = transform;
-
-  itemEl.style.MozTransform = transform;
-
-  itemEl.style.OTransform = transform;
-
   itemEl.style.transform = transform;
 
   itemEl.style.filter = `grayscale(${(alpha - 1) * -8}) blur(${
     (alpha - 1) * -5 > 1 ? Math.floor((alpha - 1) * -8) : 0
   }px)`;
-  itemEl.style.zIndex = Math.floor(alpha * 1000);
-  itemEl.style.opacity = alpha;
+  itemEl.style.zIndex = Math.floor(alpha * 1000).toString();
+  itemEl.style.opacity = alpha.toString();
 
   return newItem;
 };
@@ -112,7 +108,7 @@ const createItem = (
   index: number,
   textsLength: number,
   size: number,
-  itemRef: any
+  itemRef: MutableRefObject<HTMLSpanElement>
 ) => {
   const transformOrigin = "50% 50%";
   const transform = "translate3d(-50%, -50%, 0) scale(1)";
@@ -157,44 +153,13 @@ let defaultState: tagSphereProps = {
   fullHeight: false,
 };
 
-(async () => {
-  const tagSphereData = await fetch(`/api/staticSkill`).then((res) =>
-    res.json()
-  );
-
-  // `http://localhost:1337/api/skills?populate=*`,
-  // {
-  //   headers: {
-  //     Authorization: "Bearer " + process.env.NEXT_PUBLIC_STRAPI_TOKEN,
-  //   },
-  // }
-
-  defaultState = {
-    ...defaultState,
-    texts: tagSphereData.data.map((item: any) => (
-      <img
-        key={item.id}
-        className="tag-sphere-image"
-        height={
-          window.innerWidth > 1440 ? 20 : window.innerWidth > 1020 ? 15 : 12
-        }
-        width={
-          window.innerWidth > 1440 ? 75 : window.innerWidth > 1020 ? 50 : 40
-        }
-        src={item.image}
-        alt={item.alt}
-      />
-    )),
-  };
-})();
-
 const TagSphere = (props: any) => {
   const {
     maxSpeed,
     initialSpeed,
     initialDirection,
-    texts,
     keepRollingAfterMouseOut,
+    texts,
     fullHeight,
     fullWidth,
     style,
@@ -270,7 +235,7 @@ const TagSphere = (props: any) => {
 
   useEffect(() => {
     setItems(() =>
-      texts.map((text, index) =>
+      texts.map((text, index: number) =>
         createItem(text, index, texts.length, size, itemHooks[index])
       )
     );
@@ -309,7 +274,6 @@ const TagSphere = (props: any) => {
     return false;
   };
 
-  //! I believe this is the problematic function
   const next = () => {
     setItems((items: IItem[]) => {
       if (lessSpeed == 0) return items;
