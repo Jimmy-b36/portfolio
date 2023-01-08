@@ -1,4 +1,4 @@
-import React, { Suspense, useState } from "react";
+import React, { Fragment, Suspense, useState } from "react";
 import TagSphere from "./TagSphere";
 import useIsExpandedTimeout from "../hooks/useIsExpandedTimeout";
 import useSWR from "swr";
@@ -77,13 +77,13 @@ const Skills = () => {
             </div>
           ) : (
             <div className="w-auto rounded-full bg-gradient-to-br from-white to-slate-500">
-              <Suspense fallback={<div>Loading...</div>}>
-                <TagSphere
-                  texts={tagSphereData.data.map((item: TagSphereTexts) => (
+              <TagSphere
+                texts={tagSphereData.data.map((item: TagSphereTexts) => (
+                  <Fragment key={item.id}>
                     <TagSphereImg texts={item} />
-                  ))}
-                />
-              </Suspense>
+                  </Fragment>
+                ))}
+              />
             </div>
           )}
         </div>
