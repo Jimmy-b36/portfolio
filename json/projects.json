@@ -34,8 +34,8 @@
     },
     {
       "id": 5,
-      "description": "A simple chat app built using Next.js and tailwind",
-      "title": "Chat app",
+      "description": "A border radius previewer app built using Next.js and tailwind",
+      "title": "Border radius previewer",
       "gitUrl": "https://github.com/Jimmy-b36/border-radius-previewer",
       "webUrl": "https://border-radius-previewer-one.vercel.app/",
       "image": "https://github.com/Jimmy-b36/border-radius-previewer/blob/main/public/screenshots/Screenshot%202022-12-31%20at%209.03.33%20AM.png?raw=true"
