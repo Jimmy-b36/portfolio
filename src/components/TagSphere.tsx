@@ -142,7 +142,7 @@ const createItem = (
   };
 };
 
-let defaultState: tagSphereProps = {
+const defaultState: tagSphereProps = {
   texts: [],
   maxSpeed: 7,
   initialSpeed: 20,
