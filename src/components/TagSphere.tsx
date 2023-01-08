@@ -108,7 +108,7 @@ const createItem = (
   index: number,
   textsLength: number,
   size: number,
-  itemRef: MutableRefObject<HTMLSpanElement>
+  itemRef: any
 ) => {
   const transformOrigin = "50% 50%";
   const transform = "translate3d(-50%, -50%, 0) scale(1)";
