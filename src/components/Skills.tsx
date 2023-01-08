@@ -1,6 +1,16 @@
-import React, { useState } from "react";
+import React, { Suspense, useState } from "react";
 import TagSphere from "./TagSphere";
 import useIsExpandedTimeout from "../hooks/useIsExpandedTimeout";
+import useSWR from "swr";
+import TagSphereImg from "./TagSphereImg";
+
+const fetcher = (url: string) => fetch(url).then((res) => res.json());
+
+export type TagSphereTexts = {
+  id: number;
+  image: string;
+  alt: string;
+};
 
 const SKILLS = [
   "TypeScript, ",
@@ -34,6 +44,9 @@ const Skills = () => {
   const [isListView, setIsListView] = useState<boolean>(false);
   const isExpanded = useIsExpandedTimeout();
 
+  const { data: tagSphereData, error } = useSWR("api/staticSkill", fetcher);
+  if (error) return <div>failed to load</div>;
+
   return (
     <>
       {isExpanded && (
@@ -64,7 +77,13 @@ const Skills = () => {
             </div>
           ) : (
             <div className="w-auto rounded-full bg-gradient-to-br from-white to-slate-500">
-              <TagSphere />
+              <Suspense fallback={<div>Loading...</div>}>
+                <TagSphere
+                  texts={tagSphereData.data.map((item: TagSphereTexts) => (
+                    <TagSphereImg texts={item} />
+                  ))}
+                />
+              </Suspense>
             </div>
           )}
         </div>
