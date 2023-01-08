@@ -11,7 +11,6 @@ const Contact = () => {
 
   const sendEmail = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("🚀 ~ sendEmail ~ contactForm.current", typeof contactForm);
     emailjs
       .sendForm(
         process.env.NEXT_PUBLIC_SERVICE_ID ?? "no service id",
