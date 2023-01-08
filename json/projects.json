@@ -1,6 +1,22 @@
 {
   "data": [
     {
+      "id": 4,
+      "description": "A sorting algorithm visualizer built using Next.js and tailwind",
+      "title": "Sorting algorithm visualizer",
+      "gitUrl": "https://github.com/Jimmy-b36/visualize-algorithms",
+      "webUrl": "https://visualize-algorithms-lld6.vercel.app/",
+      "image": "https://github.com/Jimmy-b36/visualize-algorithms/blob/main/public/screenshots/Screenshot%202022-12-31%20at%208.55.53%20AM.png?raw=true"
+    },
+    {
+      "id": 5,
+      "description": "A border radius previewer app built using Next.js and tailwind",
+      "title": "Border radius previewer",
+      "gitUrl": "https://github.com/Jimmy-b36/border-radius-previewer",
+      "webUrl": "https://border-radius-previewer-one.vercel.app/",
+      "image": "https://github.com/Jimmy-b36/border-radius-previewer/blob/main/public/screenshots/Screenshot%202022-12-31%20at%209.03.33%20AM.png?raw=true"
+    },
+    {
       "id": 1,
       "description": "An E-commerce site for selling stickers",
       "title": "Stickers",
@@ -23,22 +39,6 @@
       "gitUrl": "https://github.com/Jimmy-b36/todo-app",
       "webUrl": "",
       "image": "https://github.com/Jimmy-b36/todo-app/blob/main/public/screenshots/Screenshot%202022-12-31%20at%2010.03.24%20AM.png?raw=true"
-    },
-    {
-      "id": 4,
-      "description": "A sorting algorithm visualizer built using Next.js and tailwind",
-      "title": "Sorting algorithm visualizer",
-      "gitUrl": "https://github.com/Jimmy-b36/visualize-algorithms",
-      "webUrl": "https://visualize-algorithms-lld6.vercel.app/",
-      "image": "https://github.com/Jimmy-b36/visualize-algorithms/blob/main/public/screenshots/Screenshot%202022-12-31%20at%208.55.53%20AM.png?raw=true"
-    },
-    {
-      "id": 5,
-      "description": "A border radius previewer app built using Next.js and tailwind",
-      "title": "Border radius previewer",
-      "gitUrl": "https://github.com/Jimmy-b36/border-radius-previewer",
-      "webUrl": "https://border-radius-previewer-one.vercel.app/",
-      "image": "https://github.com/Jimmy-b36/border-radius-previewer/blob/main/public/screenshots/Screenshot%202022-12-31%20at%209.03.33%20AM.png?raw=true"
     }
   ]
 }
