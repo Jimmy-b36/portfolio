@@ -46,6 +46,7 @@ const Skills = () => {
 
   const { data: tagSphereData, error } = useSWR("api/staticSkill", fetcher);
   if (error) return <div>failed to load</div>;
+  if (!tagSphereData) return <div>loading...</div>;
 
   return (
     <>
