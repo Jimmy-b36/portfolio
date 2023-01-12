@@ -4,8 +4,6 @@ import useIsExpandedTimeout from "../hooks/useIsExpandedTimeout";
 import useSWR from "swr";
 import TagSphereImg from "./TagSphereImg";
 
-const fetcher = (url: string) => fetch(url).then((res) => res.json());
-
 export type TagSphereTexts = {
   id: number;
   image: string;
@@ -40,12 +38,14 @@ const SKILLS = [
   "Python",
 ];
 
-const Skills = () => {
+const Skills = ({
+  tagSphereData,
+}: {
+  tagSphereData: { data: TagSphereTexts[] };
+}) => {
   const [isListView, setIsListView] = useState<boolean>(false);
   const isExpanded = useIsExpandedTimeout();
 
-  const { data: tagSphereData, error } = useSWR("api/staticSkill", fetcher);
-  if (error) return <div>failed to load</div>;
   if (!tagSphereData && isExpanded) return <div>loading...</div>;
 
   return (

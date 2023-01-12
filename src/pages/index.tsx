@@ -6,6 +6,8 @@ import About from "../components/About";
 import Projects from "../components/Projects";
 import Contact from "../components/Contact";
 import Home from "../components/Home";
+import { TagSphereTexts } from "../components/Skills";
+import { ProjectsDataItem } from "../components/Projects";
 
 interface ITitles {
   title: string;
@@ -13,15 +15,28 @@ interface ITitles {
   page: JSX.Element;
 }
 
-const TITLES: ITitles[] = [
-  { title: "About", color: "#2A9D8F", page: <About /> },
-  { title: "Projects", color: "#E9C46A", page: <Projects /> },
-  { title: "Skills", color: "#E76F51", page: <Skills /> },
-  { title: "Contact", color: "#F4A261", page: <Contact /> },
-];
+interface IIndexProps {
+  skillsData: { data: TagSphereTexts[] };
+  projectsData: { data: ProjectsDataItem[] };
+}
 
-const Index: NextPage = () => {
+const Index = ({ skillsData, projectsData }: IIndexProps) => {
   const [pageSelected, setPageSelected] = useState("Home");
+
+  const TITLES: ITitles[] = [
+    { title: "About", color: "#2A9D8F", page: <About /> },
+    {
+      title: "Projects",
+      color: "#E9C46A",
+      page: <Projects projectsData={projectsData} />,
+    },
+    {
+      title: "Skills",
+      color: "#E76F51",
+      page: <Skills tagSphereData={skillsData} />,
+    },
+    { title: "Contact", color: "#F4A261", page: <Contact /> },
+  ];
 
   // if the page selected is not home or that page itself transform button to other side of page
   return (
@@ -52,5 +67,22 @@ const Index: NextPage = () => {
     </div>
   );
 };
+
+export async function getStaticProps() {
+  // Call an external API endpoint to get posts
+  const skillsRes = await fetch("https://james-ball.dev/api/staticSkill");
+  const projectsRes = await fetch("https://james-ball.dev/api/staticProject");
+  const projectsData = await projectsRes.json();
+  const skillsData = await skillsRes.json();
+
+  // By returning { props: { posts } }, the Blog component
+  // will receive `posts` as a prop at build time
+  return {
+    props: {
+      skillsData,
+      projectsData,
+    },
+  };
+}
 
 export default Index;

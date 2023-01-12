@@ -5,18 +5,16 @@ import { useState } from "react";
 
 import useIsExpandedTimeout from "../hooks/useIsExpandedTimeout";
 
-interface IProjectsDataItem {
+export type ProjectsDataItem = {
   id: number;
   description: string;
   webUrl: string;
   gitUrl: string;
   title: string;
   image: string;
-}
+};
 
-const fetcher = (url: string) => fetch(url).then((res) => res.json());
-
-const FrontOfCard = ({ itemImage }: { itemImage: IProjectsDataItem }) => {
+const FrontOfCard = ({ itemImage }: { itemImage: ProjectsDataItem }) => {
   return (
     <Image
       src={`${itemImage.image}}`}
@@ -29,7 +27,7 @@ const FrontOfCard = ({ itemImage }: { itemImage: IProjectsDataItem }) => {
   );
 };
 
-const BackOfCard = ({ itemContent }: { itemContent: IProjectsDataItem }) => {
+const BackOfCard = ({ itemContent }: { itemContent: ProjectsDataItem }) => {
   return (
     <div
       className={`flex h-[70%] w-full flex-col items-center justify-center rounded-lg bg-slate-800 md:h-[70%] lg:h-[77%] xl:h-[70%] xxl:h-full `}
@@ -78,13 +76,16 @@ const BackOfCard = ({ itemContent }: { itemContent: IProjectsDataItem }) => {
   );
 };
 
-const Projects = () => {
+const Projects = ({
+  projectsData,
+}: {
+  projectsData: { data: ProjectsDataItem[] };
+}) => {
   const [isTouchActive, setIsTouchActive] = useState(false);
   const isExpanded = useIsExpandedTimeout();
+  console.log("projectsData", projectsData);
 
-  const { data: projectsData, error } = useSWR("api/staticProject", fetcher);
-
-  if (error) return <div>failed to load</div>;
+  if (!projectsData) return <div>failed to load</div>;
   return (
     <>
       {isExpanded && (
@@ -94,7 +95,7 @@ const Projects = () => {
               Projects
             </h1>
             {projectsData &&
-              projectsData.data.map((projectItem: IProjectsDataItem) => (
+              projectsData.data.map((projectItem: ProjectsDataItem) => (
                 <div
                   className={styles.flip}
                   onTouchMove={() => setIsTouchActive(!isTouchActive)}
